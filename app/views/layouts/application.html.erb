@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= yield(:title)%> | My awsome application</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title><%= yield(:title)%> | My awsome application</title>
+        <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-  <li><%= link_to "Twitter", root_url %></li>
-  <nav>
-  <ul class="nav navbar-nav navbar-right">
-  <li><%= link_to "Home", root_url %></li>
-  <li><%= link_to "About", about_url %></li>
-  <li><%= link_to "Contact", contact_url %></li>
-  <li><%= link_to "Faq", faq_url %></li>
-  <li><%= link_to "Help", help_url %></li>
-  </ul>
-  </nav>
-  </div>
-  </header>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <li><%= link_to "Twitter", root_url %></li>
+            <nav>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><%= link_to "Home", root_url %></li>
+                    <li><%= link_to "About", about_url %></li>
+                    <li><%= link_to "Contact", contact_url %></li>
+                    <li><%= link_to "Faq", faq_url %></li>
+                    <li><%= link_to "Help", help_url %></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <body>
-    <%= yield %>
-  </body>
+    <body>
+        <%= yield %>
+    </body>
 </html>
