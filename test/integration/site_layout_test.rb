@@ -9,5 +9,7 @@ class SiteLinksTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", help_url
     assert_select "a[href=?]", faq_url
     assert_select "a[href=?]", contact_url
+    get signup_url
+    assert_select "title", "SignUp | My awsome application"
   end
 end
