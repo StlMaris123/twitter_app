@@ -27,4 +27,22 @@ class UserTest < ActiveSupport::TestCase
     @user.email = "a" * 247 + "gmail.com"
   end
 
+  test"email format should accept valid email addresses" do
+  @user.email = %[ste@gamiil.com, StE@gmail.co.m, s-t_E@GMAIL.CO,
+                ste+maris@gmmail.co]
+  valid_addresses.each do |invalid_address|
+    @user.invalid = invalid_address
+    assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
+  end 
+end
+  
+  test "email format should reject invalid email addresses" do
+  @user.email = %[ste@gamiil,com, StE.gmail.co.m, s-t_E@GMAIL,
+                stemaris@gm+mail.co,ste@gmail_com]
+  invalid_addresses.each do |invalid_address|
+    @user.invalid = invalid_address
+    assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
+  end 
+end
+
 end
