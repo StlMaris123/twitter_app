@@ -28,21 +28,26 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test"email format should accept valid email addresses" do
-  @user.email = %[ste@gamiil.com, StE@gmail.co.m, s-t_E@GMAIL.CO,
+    @user.email = %[ste@gamiil.com, StE@gmail.co.m, s-t_E@GMAIL.CO,
                 ste+maris@gmmail.co]
-  valid_addresses.each do |invalid_address|
-    @user.invalid = invalid_address
-    assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
-  end 
-end
-  
-  test "email format should reject invalid email addresses" do
-  @user.email = %[ste@gamiil,com, StE.gmail.co.m, s-t_E@GMAIL,
-                stemaris@gm+mail.co,ste@gmail_com]
-  invalid_addresses.each do |invalid_address|
-    @user.invalid = invalid_address
-    assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
-  end 
-end
+    valid_addresses.each do |invalid_address|
+      @user.invalid = invalid_address
+      assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
+    end 
+  end
 
+  test "email format should reject invalid email addresses" do
+    @user.email = %[ste@gamiil,com, StE.gmail.co.m, s-t_E@GMAIL,
+                stemaris@gm+mail.co,ste@gmail_com]
+    invalid_addresses.each do |invalid_address|
+      @user.invalid = invalid_address
+      assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
+    end 
+  end
+test "email should be unique" do
+  duplicate_user = @user.dup
+  duplicate_user.email = @user.email.upcase
+  @user.save
+  assert_not duplicate_user.valid?
+end
 end
